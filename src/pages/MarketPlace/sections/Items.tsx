@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import { TOKEN } from '../../../api/marketplace/marketplace.constants';
-import { useMarketPlaceItems } from '../../../api/marketplace/marketplace.hooks';
-import Spinner from '../../../components/Spinner';
+import { TOKEN } from '~/api/marketplace/marketplace.constants';
+import { useMarketPlaceItems } from '~/api/marketplace/marketplace.hooks';
+import Spinner from '~/components/Spinner';
 
 export default function Items() {
   const { items, isLoading } = useMarketPlaceItems();

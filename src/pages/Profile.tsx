@@ -2,11 +2,11 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../components/Button';
-import Container from '../components/Container';
-import { useWeb3Auth } from '../services/web3auth';
-import { useUserInfos } from '../hooks/useUserInfos';
-import { useAccounts } from '../hooks/useAccounts';
+import Button from '~/components/Button';
+import Container from '~/components/Container';
+import { useWeb3Auth } from '~/services/web3auth';
+import { useUserInfos } from '~/hooks/useUserInfos';
+import { useAccounts } from '~/hooks/useAccounts';
 
 export default function Profile() {
   const navigate = useNavigate();

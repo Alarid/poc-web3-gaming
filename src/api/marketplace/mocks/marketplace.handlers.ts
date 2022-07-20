@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 
-import { API_URL } from '../../../api/api-client';
+import { API_URL } from '~/api/api-client';
 import { items } from './marketplace.fixtures';
 
 const DELAY = 500;

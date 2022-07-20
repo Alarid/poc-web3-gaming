@@ -2,10 +2,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ArrowLeft from '@heroicons/react/outline/ArrowLeftIcon';
 import CreditCard from '@heroicons/react/outline/CreditCardIcon';
 
-import { useMarketPlaceItem } from '../../../api/marketplace/marketplace.hooks';
-import Spinner from '../../../components/Spinner';
-import Button from '../../../components/Button';
-import { TOKEN } from '../../../api/marketplace/marketplace.constants';
+import { useMarketPlaceItem } from '~/api/marketplace/marketplace.hooks';
+import Spinner from '~/components/Spinner';
+import Button from '~/components/Button';
+import { TOKEN } from '~/api/marketplace/marketplace.constants';
 
 export default function Item() {
   const navigate = useNavigate();
