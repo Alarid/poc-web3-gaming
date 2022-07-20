@@ -1,19 +1,14 @@
-import React from "react"
-
-import { clsx } from "clsx"
-import JSONPretty from "react-json-pretty"
-import XIcon from "@heroicons/react/outline/XIcon"
-
-import { useWeb3Auth } from "./services/web3auth"
-import Dashboard from "./pages/Dashboard"
+import { useWeb3Auth } from './services/web3auth';
+import AuthenticatedApp from './AuthenticatedApp';
 
 export default function App() {
-  const { provider } = useWeb3Auth()
+  // If we have a provider, we're authenticated
+  const { provider } = useWeb3Auth();
 
   return (
     <div className="h-screen bg-dark flex flex-col justify-center items-center">
       {provider ? (
-        <Dashboard />
+        <AuthenticatedApp />
       ) : (
         <div
           className="spinner-border animate-spin inline-block w-16 h-16 border-b-4 rounded-full border-primary"
@@ -23,5 +18,5 @@ export default function App() {
         </div>
       )}
     </div>
-  )
+  );
 }

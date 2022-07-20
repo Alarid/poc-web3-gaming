@@ -1,3 +1,5 @@
+import { BrowserRouter } from "react-router-dom"
+
 import { Web3AuthProvider } from "./services/web3auth"
 
 export default function AppProviders({
@@ -5,5 +7,9 @@ export default function AppProviders({
 }: {
   children: React.ReactNode
 }) {
-  return <Web3AuthProvider>{children}</Web3AuthProvider>
+  return (
+    <Web3AuthProvider>
+      <BrowserRouter>{children}</BrowserRouter>
+    </Web3AuthProvider>
+  )
 }

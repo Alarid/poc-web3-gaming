@@ -7,7 +7,7 @@ module.exports = {
         primary: "hsl(var(--color-primary))",
         "primary-hover": "hsl(var(--color-primary) / 70%)",
         secondary: "hsl(var(--color-secondary))",
-        grey: "hsl(var(--color-grey))",
+        gray: "hsl(var(--color-gray))",
         dark: "hsl(var(--color-dark))",
       },
     },
