@@ -4,13 +4,16 @@ import {
   Route,
   useNavigate,
   NavLinkProps,
+  Navigate,
 } from 'react-router-dom';
 import clsx from 'clsx';
 import LogoutIcon from '@heroicons/react/outline/LogoutIcon';
 
-import Dashboard from './pages/MarketPlace';
+import MarketPlace from './pages/MarketPlace/MarketPlace';
 import Profile from './pages/Profile';
 import { useWeb3Auth } from './services/web3auth';
+import Item from './pages/MarketPlace/sections/Item';
+import Items from './pages/MarketPlace/sections/Items';
 
 function NavLink({ className, ...props }: NavLinkProps) {
   return (
@@ -39,7 +42,7 @@ export default function AuthenticatedApp() {
         </h1>
         <ul className="flex gap-8 text-xl mx-auto">
           <li>
-            <NavLink to="/">Marketplace</NavLink>
+            <NavLink to="/marketplace">Marketplace</NavLink>
           </li>
           <li>
             <NavLink to="/profile">Profile</NavLink>
@@ -60,7 +63,11 @@ export default function AuthenticatedApp() {
       <div className="flex flex-1">
         <Routes>
           <Route path="/">
-            <Route index element={<Dashboard />} />
+            <Route index element={<Navigate to="/marketplace" />} />
+            <Route path="marketplace" element={<MarketPlace />}>
+              <Route index element={<Items />} />
+              <Route path=":itemId" element={<Item />} />
+            </Route>
             <Route path="profile" element={<Profile />} />
           </Route>
         </Routes>

@@ -1,7 +1,6 @@
 import React from 'react';
 
-import JSONPretty from 'react-json-pretty';
-import XIcon from '@heroicons/react/outline/XIcon';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/Button';
 import Container from '../components/Container';
@@ -10,9 +9,9 @@ import { useUserInfos } from '../hooks/useUserInfos';
 import { useAccounts } from '../hooks/useAccounts';
 
 export default function Profile() {
-  const [output, setOutput] = React.useState<string | undefined>();
+  const navigate = useNavigate();
 
-  const { logout } = useWeb3Auth();
+  const { logout, login } = useWeb3Auth();
   const { userInfos } = useUserInfos();
   const { accounts } = useAccounts();
 
@@ -51,24 +50,20 @@ export default function Profile() {
       <nav className="mt-12">
         <ul className="list-none text-primary flex justify-center gap-4">
           <li>
-            <Button onClick={logout} className="card">
+            <Button
+              onClick={() => {
+                logout().then(() => {
+                  navigate('/');
+                  login();
+                });
+              }}
+              className="card"
+            >
               Log Out
             </Button>
           </li>
         </ul>
       </nav>
-
-      {output && (
-        <div className="overflow-auto mx-8 mt-8 w-full min-h-[100px] relative">
-          <button
-            className="absolute top-0 right-8 m-4 p-4"
-            onClick={() => setOutput(undefined)}
-          >
-            <XIcon className=" text-white w-5 h-5" />
-          </button>
-          <JSONPretty data={output} className="text-white mx-8" />
-        </div>
-      )}
     </Container>
   );
 }

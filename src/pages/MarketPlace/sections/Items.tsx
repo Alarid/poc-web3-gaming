@@ -1,25 +1,25 @@
-import { useMarketPlaceItems } from '../api/marketplace/marketplace.hooks';
-import Container from '../components/Container';
-import Spinner from '../components/Spinner';
+import { Link } from 'react-router-dom';
 
-const TOKEN = 'ETH';
+import { TOKEN } from '../../../api/marketplace/marketplace.constants';
+import { useMarketPlaceItems } from '../../../api/marketplace/marketplace.hooks';
+import Spinner from '../../../components/Spinner';
 
-export default function MarketPlace() {
+export default function Items() {
   const { items, isLoading } = useMarketPlaceItems();
 
+  if (isLoading) {
+    return (
+      <div className="flex flex-1 justify-center items-center">
+        <Spinner />
+      </div>
+    );
+  }
+
   return (
-    <Container title="Market Place">
-      <div className="flex flex-wrap gap-8 justify-center">
-        {isLoading && (
-          <div className="my-auto">
-            <Spinner />
-          </div>
-        )}
-        {items?.map((item) => (
-          <div
-            key={item.name}
-            className="w-72 p-8 bg-dark rounded-3xl shadow-md flex flex-col gap-4 text-secondary hover:scale-105 cursor-pointer"
-          >
+    <div className="flex flex-wrap gap-8 justify-center">
+      {items?.map((item) => (
+        <Link key={item.id} to={item.id}>
+          <div className="w-72 p-8 bg-dark rounded-3xl shadow-md flex flex-col gap-4 text-secondary hover:scale-105 cursor-pointer">
             <img
               src={item.imageUrl}
               alt={item.name}
@@ -46,8 +46,8 @@ export default function MarketPlace() {
               </span>
             </div>
           </div>
-        ))}
-      </div>
-    </Container>
+        </Link>
+      ))}
+    </div>
   );
 }
