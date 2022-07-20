@@ -12,20 +12,9 @@ import { useAccounts } from '../hooks/useAccounts';
 export default function Profile() {
   const [output, setOutput] = React.useState<string | undefined>();
 
-  const {
-    // getBalance,
-    // signMessage,
-    // signTransaction,
-    // sendTransaction,
-    logout,
-  } = useWeb3Auth();
-
+  const { logout } = useWeb3Auth();
   const { userInfos } = useUserInfos();
   const { accounts } = useAccounts();
-
-  // function logOutput(callback: () => Promise<any>) {
-  //   callback().then((output) => setOutput(JSON.stringify(output, null, 4)));
-  // }
 
   return (
     <Container title="Profile">
@@ -61,26 +50,6 @@ export default function Profile() {
 
       <nav className="mt-12">
         <ul className="list-none text-primary flex justify-center gap-4">
-          {/* <li>
-            <Button onClick={() => logOutput(getBalance)} className="card">
-              Get Balance
-            </Button>
-          </li>
-          <li>
-            <Button onClick={signMessage} className="card">
-              Sign Message
-            </Button>
-          </li>
-          <li>
-            <Button onClick={signTransaction} className="card">
-              Sign Transaction
-            </Button>
-          </li>
-          <li>
-            <Button onClick={sendTransaction} className="card">
-              Send Transaction
-            </Button>
-          </li> */}
           <li>
             <Button onClick={logout} className="card">
               Log Out
