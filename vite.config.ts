@@ -1,17 +1,18 @@
-import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
-import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill"
-import { NodeModulesPolyfillPlugin } from "@esbuild-plugins/node-modules-polyfill"
-import rollupNodePolyFill from "rollup-plugin-node-polyfills"
-import builtins from "rollup-plugin-node-builtins"
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import eslint from 'vite-plugin-eslint';
+import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
+import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
+import rollupNodePolyFill from 'rollup-plugin-node-polyfills';
+import builtins from 'rollup-plugin-node-builtins';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), eslint()],
   optimizeDeps: {
     esbuildOptions: {
       define: {
-        global: "globalThis",
+        global: 'globalThis',
       },
       plugins: [
         NodeGlobalsPolyfillPlugin({
@@ -32,14 +33,4 @@ export default defineConfig({
       ],
     },
   },
-  server: {
-    proxy: {
-      "https://rpc.ankr.com/solana": {
-        target: "https://rpc.ankr.com/solana",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/solana/, ""),
-      },
-    },
-  },
-})
+});
