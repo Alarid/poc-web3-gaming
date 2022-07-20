@@ -1,32 +1,31 @@
 import React from 'react';
 
 import JSONPretty from 'react-json-pretty';
-import { useQuery } from 'react-query';
 import XIcon from '@heroicons/react/outline/XIcon';
 
 import Button from '../components/Button';
 import Container from '../components/Container';
 import { useWeb3Auth } from '../services/web3auth';
+import { useUserInfos } from '../hooks/useUserInfos';
+import { useAccounts } from '../hooks/useAccounts';
 
 export default function Profile() {
   const [output, setOutput] = React.useState<string | undefined>();
 
   const {
-    getUserInfo,
-    getAccounts,
-    getBalance,
-    signMessage,
-    signTransaction,
-    sendTransaction,
+    // getBalance,
+    // signMessage,
+    // signTransaction,
+    // sendTransaction,
     logout,
   } = useWeb3Auth();
 
-  const { data: userInfos } = useQuery('userInfo', getUserInfo);
-  const { data: accounts } = useQuery('accounts', getAccounts);
+  const { userInfos } = useUserInfos();
+  const { accounts } = useAccounts();
 
-  function logOutput(callback: () => Promise<any>) {
-    callback().then((output) => setOutput(JSON.stringify(output, null, 4)));
-  }
+  // function logOutput(callback: () => Promise<any>) {
+  //   callback().then((output) => setOutput(JSON.stringify(output, null, 4)));
+  // }
 
   return (
     <Container title="Profile">
