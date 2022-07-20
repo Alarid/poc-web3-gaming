@@ -1,6 +1,7 @@
 import React from 'react';
 
 import JSONPretty from 'react-json-pretty';
+import { useQuery } from 'react-query';
 import XIcon from '@heroicons/react/outline/XIcon';
 
 import Button from '../components/Button';
@@ -20,31 +21,48 @@ export default function Profile() {
     logout,
   } = useWeb3Auth();
 
+  const { data: userInfos } = useQuery('userInfo', getUserInfo);
+  const { data: accounts } = useQuery('accounts', getAccounts);
+
   function logOutput(callback: () => Promise<any>) {
     callback().then((output) => setOutput(JSON.stringify(output, null, 4)));
   }
 
   return (
-    <Container>
-      <h1 className="text-3xl text-primary text-center mb-4">Profile</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-        euismod, nisl eget consectetur consectetur, nisl nunc consectetur nisl,
-        eget consectetur nisl nunc eget consectetur.
-      </p>
-      <nav className="mt-8">
-        <ul className="list-none text-primary flex justify-center items-center gap-4 flex-wrap">
-          <li>
-            <Button onClick={() => logOutput(getUserInfo)} className="card">
-              Get User Info
-            </Button>
-          </li>
-          <li>
-            <Button onClick={() => logOutput(getAccounts)} className="card">
-              Get Accounts
-            </Button>
-          </li>
-          <li>
+    <Container title="Profile">
+      {userInfos && (
+        <div className="flex justify-center max-w-[50%] mx-auto">
+          {userInfos.profileImage && (
+            <img
+              src={userInfos.profileImage}
+              alt={userInfos.name}
+              className="w-32 h-32 rounded-full mr-4 border-[1px] border-primary"
+            />
+          )}
+          <div className="flex flex-col gap-1">
+            <h2 className="text-2xl text-secondary">{userInfos.name}</h2>
+            <small className="text-sm text-primary font-semibold">
+              {userInfos.email}
+            </small>
+            {userInfos.typeOfLogin && (
+              <p className="mt-2">
+                <strong className="inline">Login type: </strong>
+                {userInfos.typeOfLogin}
+              </p>
+            )}
+            {accounts && (
+              <p>
+                <strong className="inline">Accounts: </strong>
+                {accounts.join(', ')}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
+      <nav className="mt-12">
+        <ul className="list-none text-primary flex justify-center gap-4">
+          {/* <li>
             <Button onClick={() => logOutput(getBalance)} className="card">
               Get Balance
             </Button>
@@ -63,7 +81,7 @@ export default function Profile() {
             <Button onClick={sendTransaction} className="card">
               Send Transaction
             </Button>
-          </li>
+          </li> */}
           <li>
             <Button onClick={logout} className="card">
               Log Out
