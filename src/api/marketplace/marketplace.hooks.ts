@@ -8,3 +8,10 @@ export function useMarketPlaceItems() {
   );
   return { items, ...rest };
 }
+
+export function useMarketPlaceItem(itemId: string) {
+  const { data: item, ...rest } = useQuery<Item>('marketplace-item', () =>
+    client(`item/${itemId}`),
+  );
+  return { item, ...rest };
+}
