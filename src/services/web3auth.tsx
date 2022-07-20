@@ -45,7 +45,7 @@ export function Web3AuthProvider({ children }: { children: React.ReactNode }) {
           chainConfig: {
             chainNamespace: CHAIN_NAMESPACES.SOLANA,
             chainId: '0x1',
-            rpcTarget: 'https://rpc.ankr.com/solana',
+            rpcTarget: 'https://rpc.ankr.com/solana_devnet',
           },
           uiConfig: {
             theme: 'dark',
