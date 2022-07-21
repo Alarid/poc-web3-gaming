@@ -7,7 +7,7 @@ export default function App() {
   const { provider } = useWeb3Auth();
 
   return (
-    <div className="h-screen bg-dark flex flex-col justify-center items-center">
+    <div className="h-screen flex flex-col justify-center items-center">
       {provider ? <AuthenticatedApp /> : <Spinner />}
     </div>
   );

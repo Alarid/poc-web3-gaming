@@ -23,7 +23,7 @@ function NavLink({ className, ...props }: NavLinkProps) {
         clsx(
           className,
           'hover:text-primary text-lg font-semibold',
-          isActive ? 'text-primary' : 'text-secondary',
+          isActive && props.to !== '#' ? 'text-secondary' : 'text-primary',
         )
       }
     />

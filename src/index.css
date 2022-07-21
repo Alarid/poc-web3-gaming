@@ -9,4 +9,12 @@
     --color-gray: 184deg 11% 18%;
     --color-dark: 194deg 13% 10%;
   }
+
+  html {
+    background-color: hsl(var(--color-dark));
+  }
+
+  body {
+    overflow-x: hidden;
+  }
 }
